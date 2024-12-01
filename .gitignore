@@ -1,0 +1,3 @@
+src/*/input
+node_modules
+.idea
