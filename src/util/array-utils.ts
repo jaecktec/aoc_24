@@ -74,3 +74,35 @@ export function reverseArray<T>(a: T[]): T[] {
     }
     return reversed;
 }
+
+/**
+ * Returns all combinations of length `combinationLength` from the list
+ * @param list
+ * @param combinationLength
+ */
+export function getAllCombinations<T>(list: T[], combinationLength: number): T[][] {
+    if (combinationLength === 1) {
+        return list.map(item => [item]);
+    }
+
+    const combinations: T[][] = [];
+    for (let i = 0; i <= list.length - combinationLength; i++) {
+        const head = list.slice(i, i + 1);
+        const tailCombinations = getAllCombinations(list.slice(i + 1), combinationLength - 1);
+        for (const tailCombination of tailCombinations) {
+            combinations.push(head.concat(tailCombination));
+        }
+    }
+
+    return combinations;
+}
+
+export function countOccurrences<T>(array: T[], thing: T): number {
+    let counts = 0;
+    for (const item of array) {
+        if (item === thing) {
+            counts++;
+        }
+    }
+    return counts;
+}
