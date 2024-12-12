@@ -106,3 +106,13 @@ export function countOccurrences<T>(array: T[], thing: T): number {
     }
     return counts;
 }
+
+export function insertElementAt<T>(array: T[], element: T, position: number): T[] {
+    array.splice(position, 0, element);
+    return array;
+}
+
+export function removeElementAt<T>(array: T[], position: number): T[] {
+    array.splice(position, 1);
+    return array;
+}
