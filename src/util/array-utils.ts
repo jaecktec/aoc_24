@@ -52,7 +52,7 @@ export function rotateMatrixMinus45<T>(matrix: T[][]): T[][] {
 export function matchesPattern<T>(matrix: T[][], pattern: (T | undefined)[][], j: number, i: number): boolean {
     const matrixWindow = matrix.slice(i, i + pattern.length).map(r => r.slice(j, j + pattern[0].length));
     // if dimensions are not equal, return false
-    if(matrixWindow.length !== pattern.length || matrixWindow[0].length !== pattern[0].length) return false;
+    if (matrixWindow.length !== pattern.length || matrixWindow[0].length !== pattern[0].length) return false;
 
     for (let patternI = 0; patternI < pattern.length; patternI++) {
         for (let patternJ = 0; patternJ < pattern[0].length; patternJ++) {
@@ -95,6 +95,23 @@ export function getAllCombinations<T>(list: T[], combinationLength: number): T[]
     }
 
     return combinations;
+}
+
+/**
+ * Splits an array into chunks of size `chunkSize`
+ * example:
+ *
+ * splitInChunks([1,2,3,4,5], 2) => [[1,2], [3,4], [5]]
+ * splitInChunks([1,2,3,4], 3) => [[1,2,3], [3]]
+ * @param array
+ * @param chunkSize
+ */
+export function splitInChunks<T>(array: T[], chunkSize: number): T[][] {
+    const chunks: T[][] = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+        chunks.push(array.slice(i, i + chunkSize));
+    }
+    return chunks
 }
 
 export function countOccurrences<T>(array: T[], thing: T): number {
